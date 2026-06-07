@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskHub | سیستم مدیریت کارهای روزانه</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+    <!-- نوار کناری با تقویم -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-check-circle"></i>
+            <h2>Task<span>Hub</span></h2>
+        </div>
+
+        <!-- تقویم نمایشی ساده و شیک -->
+        <div class="calendar-card">
+            <div class="calendar-header">
+                <button id="prevMonth"><i class="fas fa-chevron-right"></i></button>
+                <h3 id="monthYear"></h3>
+                <button id="nextMonth"><i class="fas fa-chevron-left"></i></button>
+            </div>
+            <div class="calendar-weekdays">
+                <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
+            </div>
+            <div class="calendar-days" id="calendarDays"></div>
+        </div>
+
+        <!-- آمار سریع -->
+        <div class="quick-stats">
+            <div class="stat">
+                <i class="fas fa-tasks"></i>
+                <span id="totalTasksStat">0</span>
+                <small>کل کارها</small>
+            </div>
+            <div class="stat">
+                <i class="fas fa-check-double"></i>
+                <span id="doneTasksStat">0</span>
+                <small>انجام شده</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- بخش اصلی -->
+    <main class="main">
+        <!-- هدر با تاریخ و پیام انگیزشی -->
+        <div class="top-header">
+            <div class="greeting">
+                <h1 id="greetingText">روز خوبی داشته باش 🌼</h1>
+                <p id="persianDateLarge"></p>
+            </div>
+            <div class="motivation-message" id="motivationMsg">
+                🌟 هر تیک یه قدم به موفقیت نزدیکترت می‌کنه
+            </div>
+        </div>
+
+        <!-- کارت افزودن کار جدید -->
+        <div class="add-task-card">
+            <input type="text" id="taskInput" placeholder="مثلاً: ارائه پروژه تا ساعت ۱۴ ...">
+            <select id="taskColor">
+                <option value="#f87171">🔴 قرمز</option>
+                <option value="#fbbf24" selected>🟡 زرد</option>
+                <option value="#4ade80">🟢 سبز</option>
+                <option value="#60a5fa">🔵 آبی</option>
+                <option value="#c084fc">🟣 بنفش</option>
+            </select>
+            <input type="date" id="taskDate">
+            <button id="addBtn"><i class="fas fa-plus"></i> افزودن</button>
+        </div>
+
+        <!-- فیلتر و جستجو -->
+        <div class="filter-section">
+            <input type="text" id="searchInput" placeholder="🔍 جستجوی کارها ...">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">همه</button>
+                <button class="filter-btn" data-filter="pending">باقی‌مانده</button>
+                <button class="filter-btn" data-filter="completed">انجام شده</button>
+            </div>
+        </div>
+
+        <!-- لیست کارها -->
+        <div class="tasks-list">
+            <h3><i class="fas fa-list-check"></i> کارهای من</h3>
+            <ul id="taskList" class="task-items"></ul>
+        </div>
+    </main>
+</div>
+
+<!-- مودال ادیت کار -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>✏️ ویرایش کار</h3>
+            <span class="close-modal">&times;</span>
+        </div>
+        <input type="text" id="editInput" placeholder="عنوان جدید">
+        <select id="editColor"></select>
+        <input type="date" id="editDate">
+        <button id="saveEditBtn">ذخیره تغییرات</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
